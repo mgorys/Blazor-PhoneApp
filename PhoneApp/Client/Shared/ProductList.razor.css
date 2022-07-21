@@ -1,0 +1,11 @@
+﻿body {
+}
+
+.media-img{
+    max-width :300px;
+    padding : 10px;
+    
+}
+.media-img:hover{
+    transform: scale(1.1)
+}

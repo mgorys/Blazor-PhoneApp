@@ -1,0 +1,83 @@
+﻿@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@implements IDisposable
+
+<div class="ps-3 navbar-background">
+        <a class="navbar-brand">Recommended</a>
+</div>
+
+@if (ProductService.Products == null || ProductService.Products.Count == 0)
+{
+    <div class="navbar-brand">
+    <span>@ProductService.Message</span>
+</div>
+}
+else
+{
+    <div class="sidefeatured">
+       
+        <ul class="list-unstyled">
+            @foreach (var prod in ProductService.Products)
+            {
+                if(prod.Recommended is true)
+                {
+                <li class="media my-2">
+                    <div class="media-img-wrapper mr-2">
+                        <a href="/product/@prod.Id">
+                            <img class="media-img" src="@prod.ImageUrl" alt="@prod.Title" />
+                        </a>
+                    </div>
+                            @if(prod.Category.Name == CategoryService.Categories[0].Name)
+                            {
+                    <div class="media-body">
+                            <p class="mb-0">@prod.Title @prod.Variants[2].ProductType.Name</p>
+                            <p class="price-old">@prod.Variants[2].OriginalPrice</p>
+                            <p class="price-new">@prod.Variants[2].Price</p>
+                
+                    </div>
+                            }   
+                            @if(prod.Category.Name == CategoryService.Categories[1].Name)
+                            {
+                    <div class="media-body">
+                            <p class="mb-0">@prod.Title @prod.Variants[0].ProductType.Name</p>
+                            <p class="price-old">@prod.Variants[0].OriginalPrice</p>
+                            <p class="price-new">@prod.Variants[0].Price</p>
+                    </div>
+                            }  
+                                
+                </li>
+                }
+                      
+            }
+        </ul>
+    </div>
+    
+}
+
+
+
+
+
+@code {
+    //jak to usune to recommended sidebar jest staly i wyrzuca phones wiec usuwam bo jest jakis progres
+    //protected override void OnInitialized()  
+    //{
+    //    ProductService.ProductsChanged += StateHasChanged;
+    //}
+
+    public void Dispose() //jak to usune to nie ma zmiany
+    {
+        ProductService.ProductsChanged -= StateHasChanged;
+    }
+      [Parameter]
+    public string? CategoryUrl { get; set; } = null;
+    
+    protected override async Task OnParametersSetAsync()
+    {
+       
+            await ProductService.GetProducts();
+       
+    }
+
+
+}

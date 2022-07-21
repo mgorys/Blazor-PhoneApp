@@ -1,0 +1,19 @@
+﻿body {
+}
+.media-img {
+    max-width: 500px
+}
+
+.price {
+    color: green
+}
+
+.original-price {
+   
+    text-decoration: line-through;
+    color: red;
+}
+
+.form-select{
+    max-width: 300px
+}
