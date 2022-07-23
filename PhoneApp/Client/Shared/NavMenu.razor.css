@@ -4,7 +4,9 @@
         padding-top: 1rem;
 }
 
-
+.search-panel{
+    margin: 10px;
+}
 
 
 @media (min-width: 641px) {

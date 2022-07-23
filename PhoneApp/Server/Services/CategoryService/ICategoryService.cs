@@ -1,6 +1,6 @@
 ﻿using PhoneApp.Shared;
 
-namespace PhoneApp.Server.Services.ProductService.CategoryService
+namespace PhoneApp.Server.Services.CategoryService
 {
     public interface ICategoryService
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhoneApp.Shared;
 
-namespace PhoneApp.Server.Services.ProductService.CategoryService
+namespace PhoneApp.Server.Services.CategoryService
 {
     public class CategoryService : ICategoryService
     {

@@ -1,8 +1,10 @@
+global using PhoneApp.Shared;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using PhoneApp.Server;
-using PhoneApp.Server.Services.PhoneService;
-using PhoneApp.Server.Services.ProductService.CategoryService;
+using PhoneApp.Server.Services.CartService;
+using PhoneApp.Server.Services.ProductService;
+using PhoneApp.Server.Services.CategoryService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();
 

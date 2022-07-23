@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PhoneApp.Server.Services.ProductService.CategoryService;
+using PhoneApp.Server.Services.CategoryService;
 using PhoneApp.Shared;
 
 namespace PhoneApp.Server.Controllers

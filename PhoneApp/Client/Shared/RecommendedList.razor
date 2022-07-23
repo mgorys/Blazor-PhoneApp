@@ -1,0 +1,81 @@
+﻿@inject IProductService ProductService
+@inject ICategoryService CategoryService
+@implements IDisposable
+
+
+    <center><a class="navbar-brand"> Polecane </a></center>
+
+@if (ProductService.Products == null || ProductService.Products.Count == 0)
+{
+    <div class="navbar-brand">
+        <span> @ProductService.Message </span>
+    </div>
+}
+else
+{
+    <div class="container">
+
+        @foreach (var prod in ProductService.Products)
+        {
+            if (prod.Recommended is true)
+            {
+                <div class="recommended-product">
+
+
+                    <a class="xd" href="/product/@prod.Id">
+                        <img src="@prod.ImageUrl" alt="@prod.Title" />
+                    </a>
+
+
+                    @if (prod.Category.Name == CategoryService.Categories[0].Name)
+                    {
+
+                        <p class="mb-0"> @prod.Title @prod.Variants[2].ProductType.Name </p>
+                        <p class="price-old"> @prod.Variants[2].OriginalPrice </p>
+                        <p class="price-new"> @prod.Variants[2].Price </p>
+
+                    }
+
+                    @if (prod.Category.Name == CategoryService.Categories[1].Name)
+                    {
+                        <p class="mb-0"> @prod.Title</p>
+                        <p class="price-old"> @prod.Variants[0].OriginalPrice </p>
+                        <p class="price-new"> @prod.Variants[0].Price </p>
+
+                    }
+                </div>
+
+            }
+
+        }
+    </div>
+
+}
+
+
+
+
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        ProductService.ProductsChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        ProductService.ProductsChanged -= StateHasChanged;
+    }
+    [Parameter]
+    public string? CategoryUrl { get; set; } = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+
+        await ProductService.GetProducts();
+
+    }
+
+
+}

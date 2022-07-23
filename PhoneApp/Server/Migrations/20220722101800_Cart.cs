@@ -4,7 +4,7 @@
 
 namespace PhoneApp.Server.Migrations
 {
-    public partial class smallRecomm : Migration
+    public partial class Cart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

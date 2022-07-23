@@ -7,9 +7,20 @@
 }
 else
 {
-    <ul class="list-unstyled">
+
+    <ul class="list-unstyled container-fluid">
         @foreach (var product in ProductService.Products)
         {
+            @if (@product.Recommended)
+            {
+                <div class="recommended-product">
+                <div class="recommended-product-attribute">
+                    Polecamy
+                </div>
+                </div>
+            }
+
+            
             <li class="media my-2">
                 <div class="media-img-wrapper mr-2">
                     <a href="/product/@product.Id">
@@ -20,8 +31,10 @@ else
                     <a href="/product/@product.Id">
                         <h4 class="mb-0">@product.Title</h4>
                     </a>
-                    <p>@product.Description</p>
-                    
+                    <p class="mb-1">@product.Description</p>
+                     <h5 class="price">
+                        @GetPriceText(product)
+                    </h5>
                 </div>
             </li>
         }
@@ -42,5 +55,19 @@ else
     public void Dispose()
     {
         ProductService.ProductsChanged -= StateHasChanged;
+    }
+     private string GetPriceText(Product product)
+    {
+        var variants = product.Variants;
+        if (variants.Count == 0)
+        {
+            return string.Empty;
+        }
+        else if (variants.Count == 1)
+        {
+            return $"{variants[0].Price}PLN";
+        }
+        decimal minPrice = variants.Min(v => v.Price);
+        return $"Już od {minPrice}PLN";
     }
 }
