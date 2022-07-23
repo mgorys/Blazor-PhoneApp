@@ -1,16 +1,16 @@
 ﻿﻿.container {
-    display: grid;
+    display: flex;
     padding: 6px;
-}
-
-.image-wrapper {
-    width: 150px;
-    text-align: center;
 }
 .navbar-brand {
     font-size: 200%;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
+}
+
+.image-wrapper {
+    width: 150px;
+    text-align: center;
 }
 .image {
     max-height: 150px;
@@ -34,8 +34,6 @@
 .sum{
     margin-right: 100px;
 }
-
-
     .btn-danger:hover {
         text-decoration: underline;
     }
