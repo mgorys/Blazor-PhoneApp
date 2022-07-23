@@ -1,5 +1,5 @@
 ﻿﻿.container {
-    display: flex;
+    display: grid;
     padding: 6px;
 }
 
@@ -25,6 +25,7 @@
 .cart-quantity{
     padding:  5px 0 0 0;
     gap: 10px;
+    display: flex;
 }
 .cart-product-price {
     font-weight: 600;

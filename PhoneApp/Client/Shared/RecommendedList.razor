@@ -31,16 +31,16 @@ else
                     {
 
                         <p class="mb-0"> @prod.Title @prod.Variants[2].ProductType.Name </p>
-                        <p class="price-old"> @prod.Variants[2].OriginalPrice </p>
-                        <p class="price-new"> @prod.Variants[2].Price </p>
+                        <p class="price-old"> @prod.Variants[2].OriginalPrice PLN </p>
+                        <p class="price-new"> @prod.Variants[2].Price PLN </p>
 
                     }
 
                     @if (prod.Category.Name == CategoryService.Categories[1].Name)
                     {
                         <p class="mb-0"> @prod.Title</p>
-                        <p class="price-old"> @prod.Variants[0].OriginalPrice </p>
-                        <p class="price-new"> @prod.Variants[0].Price </p>
+                        <p class="price-old"> @prod.Variants[0].OriginalPrice PLN</p>
+                        <p class="price-new"> @prod.Variants[0].Price PLN</p>
 
                     }
                 </div>

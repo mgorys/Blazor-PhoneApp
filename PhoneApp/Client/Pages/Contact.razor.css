@@ -3,3 +3,35 @@
     margin-bottom: 2rem;
     padding-bottom: 2rem;
 }
+
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+.fa-github {
+    background: #161B23;
+    color: white;
+}
+.container {
+    display: flex;
+   gap: 10px;
+}
+
+
+.fa {
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    text-decoration: none;
+    border-radius: 20%;
+    text-align: center;
+    box-shadow: 0 2px 4px darkslategray;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+    .fa:hover {
+        opacity: 0.7;
+    }
+
