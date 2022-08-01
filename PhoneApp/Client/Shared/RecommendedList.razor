@@ -1,7 +1,7 @@
 ﻿@inject IProductService ProductService
 @inject ICategoryService CategoryService
 @implements IDisposable
-
+@inject IJSRuntime JS
 
     <center><a class="navbar-brand"> Polecane </a></center>
 
@@ -29,7 +29,7 @@ else
 
                     @if (prod.Category.Name == CategoryService.Categories[0].Name)
                     {
-
+                        
                         <p class="mb-0"> @prod.Title @prod.Variants[2].ProductType.Name </p>
                         <p class="price-old"> @prod.Variants[2].OriginalPrice PLN </p>
                         <p class="price-new"> @prod.Variants[2].Price PLN </p>
@@ -46,7 +46,7 @@ else
                 </div>
 
             }
-
+          
         }
     </div>
 
@@ -58,9 +58,10 @@ else
 
 @code
 {
-    protected override void OnInitialized()
+    protected override async void OnInitialized()
     {
         ProductService.ProductsChanged += StateHasChanged;
+        await JS.InvokeVoidAsync("console.log","Index page loaded");
     }
 
     public void Dispose()
@@ -76,6 +77,6 @@ else
         await ProductService.GetProducts();
 
     }
-
+ 
 
 }
