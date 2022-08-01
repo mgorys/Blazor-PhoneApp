@@ -14,7 +14,6 @@
 else
 {
     <div class="container">
-
         @foreach (var prod in ProductService.Products)
         {
             if (prod.Recommended is true)
@@ -27,16 +26,16 @@ else
                     </a>
 
 
-                    @if (prod.Category.Name == CategoryService.Categories[0].Name)
+                    @if (prod.Category?.Name == CategoryService.Categories[0].Name)
                     {
-                        
+                      
                         <p class="mb-0"> @prod.Title @prod.Variants[2].ProductType.Name </p>
                         <p class="price-old"> @prod.Variants[2].OriginalPrice PLN </p>
                         <p class="price-new"> @prod.Variants[2].Price PLN </p>
 
                     }
 
-                    @if (prod.Category.Name == CategoryService.Categories[1].Name)
+                    @if (prod.Category?.Name == CategoryService.Categories[1].Name)
                     {
                         <p class="mb-0"> @prod.Title</p>
                         <p class="price-old"> @prod.Variants[0].OriginalPrice PLN</p>
