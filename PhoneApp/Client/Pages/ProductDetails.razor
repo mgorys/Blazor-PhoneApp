@@ -59,7 +59,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        message = "Loading product...";
+        message = "Ładowanie produktu...";
 
         var result = await ProductService.GetProduct(Id);
         if (!result.Success)

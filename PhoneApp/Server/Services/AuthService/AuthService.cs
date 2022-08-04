@@ -10,13 +10,16 @@ namespace PhoneApp.Server.Services.AuthService
     {
         private readonly AppDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthService(AppDbContext context, IConfiguration configuration)
+        public AuthService(AppDbContext context, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
 
+        public int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
         public async Task<ServiceResponse<string>> Login(string email, string password)
         {
             var response = new ServiceResponse<string>();
@@ -25,12 +28,12 @@ namespace PhoneApp.Server.Services.AuthService
             if (user == null)
             {
                 response.Success = false;
-                response.Message = "User not found.";
+                response.Message = "Nie znaleziono użytkownika";
             }
             else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 response.Success = false;
-                response.Message = "Wrong password.";
+                response.Message = "Nieprawidłowe hasło";
             }
             else
             {
@@ -47,7 +50,7 @@ namespace PhoneApp.Server.Services.AuthService
                 return new ServiceResponse<int>
                 {
                     Success = false,
-                    Message = "User already exists."
+                    Message = "Podany użytkownik już istnieje"
                 };
             }
 

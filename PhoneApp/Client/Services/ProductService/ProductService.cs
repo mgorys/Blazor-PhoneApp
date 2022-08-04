@@ -22,8 +22,7 @@ namespace PhoneApp.Client.Services.ProductService
 
         public async Task GetProducts(string? categoryUrl = null)
         {
-            try
-            {
+          
             var result = categoryUrl == null ?
                 await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product") :
                 await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
@@ -37,14 +36,7 @@ namespace PhoneApp.Client.Services.ProductService
                 Message = "No products found";
 
             ProductsChanged.Invoke();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-
+            
         }
         public async Task<ServiceResponse<Product>> GetProduct(int productId)
         {
